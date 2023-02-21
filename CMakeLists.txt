@@ -4,15 +4,21 @@ project(FusionRadarBase VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(FusionRadarBase main.cpp)
+add_executable(FusionRadarBase main.cpp Server.cpp )
+add_executable(FusionRadarClient Client.cpp )
+
+include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 if(WIN32)
     set(BOOST_INCLUDEDIR     "C:/boost_1_80_0/boost")
-    set(BOOST_LIBRARYDIR     "C:/boost_1_80_0/libs")
+    set(BOOST_LIBRARYDIR     "C:/boost_1_80_0/stage/lib")
     set(BOOST_ROOT           "C:/boost_1_80_0")
-
+    
     find_package(Boost 1.80 REQUIRED)
-
+    if(MINGW)
+    target_link_libraries(FusionRadarBase ${Boost_LIBRARIES} ws2_32 wsock32)
+    target_link_libraries(FusionRadarClient ${Boost_LIBRARIES} ws2_32 wsock32)
+    endif()
     if(Boost_FOUND)
         message(STATUS "Boost Libraries are found")
         message(
@@ -28,6 +34,7 @@ if(WIN32)
         message(STATUS "Failed to find Boost Libraries")
     endif()
     target_include_directories(FusionRadarBase PUBLIC ${BOOST_ROOT})
+    target_include_directories(FusionRadarClient PUBLIC ${BOOST_ROOT})
 else()
     find_package( Boost 1.80 COMPONENTS program_options REQUIRED )
     include_directories( ${Boost_INCLUDE_DIR} )
