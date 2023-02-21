@@ -1,22 +1,47 @@
 #include <iostream>
-#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/asio.hpp>
+#include <Server.h>
+#include <pthread.h>
 
-using namespace boost::multiprecision;
-using namespace std;
- 
-int128_t boost_product(long long A, long long B)
+using boost::asio::ip::tcp;
+
+void* ServerThread(void* arg)
 {
-    int128_t ans = (int128_t)A * B;
-    return ans;
+  TcpServer* server = static_cast<TcpServer*>(arg);
+
+  while(true){
+      if (!server->getm_IsConnected()) 
+      {
+            std::cout << "Server thread stopping..." << std::endl;
+            server->stop();
+            pthread_exit(nullptr);
+            return nullptr;
+      }
+  }
+
+  pthread_exit(nullptr);
 }
 
 int main(int, char**) 
 {
-    long long first = 98745636214564698;
-    long long second = 7459874565236544789;
-    cout << "Product of " << first << " * " << second
-         << " = \n"
-         << boost_product(first, second)<<"\n";
-    std::cout << "Hello, world!\n";
-}
+  TcpServer server(1234);
+  pthread_t thread;
+  int result = pthread_create(&thread,nullptr,ServerThread,&server);
 
+  if (result != 0) {
+        std::cerr << "Failed to create thread: " << strerror(result) << std::endl;
+        return -1;
+  }
+
+  std::string input;
+  while (std::getline(std::cin, input)) {
+        if (input == "exit") {
+            server.stop();
+            break;
+        }
+    }
+
+  pthread_join(thread, nullptr); // wait for the thread to finish
+
+  return 0;
+}
