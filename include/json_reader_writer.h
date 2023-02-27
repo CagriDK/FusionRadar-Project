@@ -11,7 +11,7 @@ public:
     {
         std::fstream file(filename, std::ios::in | std::ios::out | std::ios::app); // Eğer dosya bulunamaz
         // ise oluşturur.
-        if (!file.is_open())
+        if (file.is_open())
         {
             json ex1 = {
                 {"pi", 3.141},
