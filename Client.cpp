@@ -2,10 +2,14 @@
 #include <pthread.h>
 #include <unistd.h>
 
-TcpClient::TcpClient(const std::string& host, unsigned short port)
+TcpClient::TcpClient(const std::string &host, unsigned short port)
     : m_socket(m_ioService)
 {
-    std::cout<<"Client waiting for connection\n";
+    JsonReaderWriter jsonWriter("personClient.json"); 
+    // make it create a file if not exist
+    // Class Ctor verilmez ise boş bir json oluşturması için yeni bir ctor yaz. Sadece dosyayı oluştursun.
+    jData = jsonWriter.read("personClient.json");
+    std::cout << "Client waiting for connection\n";
     ip::tcp::resolver resolver(m_ioService);
     ip::tcp::resolver::query query(host, std::to_string(port));
     ip::tcp::resolver::iterator endpointIterator = resolver.resolve(query);
@@ -21,7 +25,7 @@ TcpClient::TcpClient(const std::string& host, unsigned short port)
         if (!ec) {
             std::cout << "Client connected to port " << port << std::endl;
             break;
-        } 
+        }
         else {
             std::cerr << "Error connecting to server: " << ec.message() << std::endl;
             std::cerr << "Trying connection ...";
@@ -33,7 +37,7 @@ TcpClient::TcpClient(const std::string& host, unsigned short port)
 void TcpClient::send(const std::string &message)
 {
     boost::asio::async_write(m_socket, boost::asio::buffer(message + '\n'), [this,message](const boost::system::error_code& ec, size_t bytes) {
-        #pragma unused(bytes) // Suppress unused variable warning
+#pragma unused(bytes) // Suppress unused variable warning
             if (!ec) {
                 std::cout << "Sent message: " << message << std::endl;
                 receive();
@@ -64,12 +68,12 @@ void* clientThread(void* arg)
     while(true)
     {
         std::cout<<"Sending Message \n";
-        client->send("Test");
-        client->send("Case");
-        client->send("Working");
+        json json_data = {"age","30"};
+        std::string tempMessage = json_data.dump();
+        client->send(tempMessage);
         timerCount+=1;
         sleep(1);
-        
+
         if(timerCount >= 10)
         {
             pthread_exit(nullptr);
