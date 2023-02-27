@@ -3,6 +3,7 @@
 #include <boost/asio.hpp>
 #include <iostream>
 #include <string>
+#include <include/json_reader_writer.h>
 
 class TcpServer {
 public:
@@ -22,4 +23,6 @@ private:
     boost::asio::ip::tcp::acceptor m_acceptor;
     boost::asio::ip::tcp::socket m_socket;
     boost::asio::streambuf m_buffer;
+private:
+    json jData;
 };

@@ -4,6 +4,9 @@ TcpServer::TcpServer(unsigned short port) :
     m_acceptor(m_ioService, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port)),
     m_socket(m_ioService) 
 {
+    JsonReaderWriter jsonWriter("personServer.json"); //make it create a file if not exist
+     //Class Ctor verilmez ise boş bir json oluşturması için yeni bir ctor yaz. Sadece dosyayı oluştursun.
+    jData=jsonWriter.read("personServer.json");
     start_accept();
     m_ioService.run();
 }
@@ -34,11 +37,13 @@ void TcpServer::start_read()
 void TcpServer::handle_read(const boost::system::error_code& error, size_t bytes_transferred) 
 {
     if (!error) {
-        std::string message = boost::asio::buffer_cast<const char*>(m_buffer.data());
-        std::cout << "Received message: " << message << std::endl;
+        std::string message = (boost::asio::buffer_cast<const char*>(m_buffer.data()));
+        // [    "age",    "30"]
+        json jdata = json::parse(message);
+        std::cout << "Received message: " << jdata.dump(4) << std::endl;
         m_buffer.consume(bytes_transferred);
         // Echo the message back to the client
-        start_write(message);
+        start_write("Message Received");
     }
     else {
         std::cerr << "Error reading from socket: " << error.message() << std::endl;
