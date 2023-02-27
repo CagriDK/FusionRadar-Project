@@ -8,13 +8,14 @@ add_executable(FusionRadarBase main.cpp Server.cpp )
 add_executable(FusionRadarClient Client.cpp )
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
 if(WIN32)
-    set(BOOST_INCLUDEDIR     "C:/boost_1_80_0/boost")
-    set(BOOST_LIBRARYDIR     "C:/boost_1_80_0/stage/lib")
-    set(BOOST_ROOT           "C:/boost_1_80_0")
+    set(BOOST_INCLUDEDIR     "C:/boost_1_71_0/boost")
+    set(BOOST_LIBRARYDIR     "C:/boost_1_71_0/stage/lib")
+    set(BOOST_ROOT           "C:/boost_1_71_0")
     
-    find_package(Boost 1.80 REQUIRED)
+    find_package(Boost 1.71 REQUIRED)
     if(MINGW)
     target_link_libraries(FusionRadarBase ${Boost_LIBRARIES} ws2_32 wsock32)
     target_link_libraries(FusionRadarClient ${Boost_LIBRARIES} ws2_32 wsock32)
@@ -25,6 +26,7 @@ if(WIN32)
         "BOOST package:
             found: ${Boost_FOUND}
             BOOST_INCLUDEDIR: ${BOOST_INCLUDEDIR}
+            System Boost Dir: ${Boost_LIBRARIES}
             BOOST_LIBRARYDIR: ${BOOST_LIBRARYDIR}
             BOOST_ROOT: ${BOOST_ROOT}
             CMakeDir: ${CMAKE_CURRENT_LIST_DIR}
