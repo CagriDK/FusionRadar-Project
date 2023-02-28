@@ -4,7 +4,15 @@
 #include <pthread.h>
 
 using boost::asio::ip::tcp;
-
+/**
+ * @brief PThread fonksiyon tanımı yapılan blok
+ * Threadın çalışması bir döngüye alınmıştır.
+ * Bağlantı kurulana kadar threadı bekletir.
+ * Eğer bağlantı kapandı mesajı gelir ise (getm_IsConnected) thread kapatılır.
+ * Serverden socketden okunan mesaj tekrardan karşı tarafa yazdırılır. Yazdırma null yada false döner ise m_IsConnected false olur.
+ * @param arg 
+ * @return void* 
+ */
 void* ServerThread(void* arg)
 {
   TcpServer* server = static_cast<TcpServer*>(arg);
@@ -22,6 +30,12 @@ void* ServerThread(void* arg)
   pthread_exit(nullptr);
 }
 
+/**
+ * @brief Ana fonksiyon bloğu
+ * Thread ve TcpServer oluşturulur.
+ * Terminale "exit" yazdırılır ise manuel olarak server durdurulabilir.
+ * @return int 
+ */
 int main(int, char**) 
 {
   TcpServer server(1234);
