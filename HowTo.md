@@ -124,28 +124,35 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
+1. VSCode Extension CMake indir
+2. VSCode Extension CMake Tools indir
+3. VSCode Extension WSL indir
+4. Microsoft Store Ubuntu 20.04 indir
+5. Ubuntu Kurulumu sonrası komutlar 
+   ```
+   sudo apt-get update
+   sudo apt-get install build-essential
+   sudo apt-get install cmake
+   sudo apt-get install libboost-all-dev
+   sudo apt-get install code
+   ```
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [https://github.com/CagriDK/FusionRadar-Project](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone [https://github.com/your_username_/Project-Name.git](https://github.com/CagriDK/FusionRadar-Project.git)
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+3. Git Clone sonrası VSCode ile dosya açılır.
+4. Clone dosya içerisine terminalde
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   mkdir build
+   cd .\build
+   cmake -S ..\ -B . 
    ```
+5. VSCode içerisinde Control+P >CMake Clear/Rebuild seçilerek derlenir.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
