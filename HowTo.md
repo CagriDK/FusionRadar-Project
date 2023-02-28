@@ -108,8 +108,12 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * Boost
 * Json
 * CMake
+* GCC/MinGW 
 
-[![CPP][cpp.dev]][cpp-url] [![VSCode][code.dev]][code-url] [![Json][json.dev]][json-url] [![Boost][boost.dev]][boost-url] 
+[![CPP][cpp.dev]][cpp-url] [![VSCode][code.dev]][code-url] [![Json][json.dev]][json-url] 
+
+[![Boost][boost.dev]][boost-url] [![MinGW][mingw.dev]][mingw-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -267,3 +271,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [boost-url]:https://www.boost.org/users/history/version_1_71_0.html
 [json.dev]:https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/240px-JSON_vector_logo.svg.png
 [json-url]:https://github.com/nlohmann/json
+[mingw.dev]:http://ratfactor.com/misc/mingw64/logo01.png
+[mingw-url]:https://github.com/niXman/mingw-builds-binaries/releases/download/12.2.0-rt_v10-rev2/x86_64-12.2.0-release-posix-seh-msvcrt-rt_v10-rev2.7z
+
+
