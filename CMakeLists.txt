@@ -4,11 +4,13 @@ project(FusionRadarBase VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(FusionRadarBase main.cpp Server.cpp )
-add_executable(FusionRadarClient Client.cpp )
+add_executable(FusionRadarBase main.cpp Server.cpp)
+add_executable(FusionRadarClient Client.cpp)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+
+add_subdirectory(test)
 
 if(WIN32)
     set(BOOST_INCLUDEDIR     "C:/boost_1_71_0/boost")
@@ -42,6 +44,7 @@ else()
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
     include_directories( ${Boost_INCLUDE_DIR} )
     target_link_libraries(FusionRadarBase LINK_PUBLIC ${Boost_LIBRARIES} )
+    target_link_libraries(FusionRadarClient LINK_PUBLIC ${Boost_LIBRARIES} )
 endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
