@@ -29,7 +29,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/CagriDK/FusionRadar-Project">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -38,14 +38,14 @@
   <p align="center">
     Demonstration of Server-Client project with some boost,cmake tools for demo!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/CagriDK/FusionRadar-Project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/CagriDK/FusionRadar-Project">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/CagriDK/FusionRadar-Project/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/CagriDK/FusionRadar-Project/issues">Request Feature</a>
   </p>
 </div>
 
@@ -219,9 +219,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Çağrı Dükünlü - [@cagrideka](https://www.linkedin.com/in/%C3%A7a%C4%9Fr%C4%B1-d%C3%BCk%C3%BCnl%C3%BC-msc-a47b83131/) -cagridknl@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [FusionRadar-Project](https://github.com/CagriDK/FusionRadar-Project)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
