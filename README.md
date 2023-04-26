@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/CagriDK/FusionRadar-Project">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/Logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Fusion-Radar-Project</h3>
