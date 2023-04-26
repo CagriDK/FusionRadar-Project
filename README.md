@@ -257,7 +257,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [license-url]: https://github.com/CagriDK/FusionRadar-Project/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/%C3%A7a%C4%9Fr%C4%B1-d%C3%BCk%C3%BCnl%C3%BC-msc-a47b83131/
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/RunTimeScreenShot.png
 [cpp.dev]:https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/240px-Visual_Studio_Code_1.35_icon.svg.png
 [cpp-url]:https://cplusplus.com/
 [code.dev]:https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/213px-ISO_C%2B%2B_Logo.svg.png
