@@ -1,14 +1,7 @@
 #include <Client.h>
 #include <pthread.h>
 #include <unistd.h>
-/**
- * @brief Construct a new Tcp Client:: Tcp Client object
- * TcpClient Ctor çağırıldığında "personClient.json" oluşturulur. 
- * Bir timer aracılığı ile bağlantı yapılana kadar bekleme yapılır.
- * Bağlantı yapıldıktan sonra döngüden çıkar.
- * @param host // Hangi Adrese bağlantı yapılacağı
- * @param port // Hangi Porta bağlantı yapılacağı
- */
+
 TcpClient::TcpClient(const std::string &host, unsigned short port)
     : m_socket(m_ioService)
 {
@@ -41,12 +34,6 @@ TcpClient::TcpClient(const std::string &host, unsigned short port)
     }
 }
 
-/**
- * @brief Sockete veri yazdırma bloğu
- * async_write fonksiyonu ile buffera arguman olarak gönderilen mesaj yazdırılır.
- * Mesajın ulaşamama durumunda hata komutu ekrana yazdırılır.
- * @param message 
- */
 void TcpClient::send(const std::string &message)
 {
     boost::asio::async_write(m_socket, boost::asio::buffer(message + '\n'), [this,message](const boost::system::error_code& ec, size_t bytes) {
@@ -61,12 +48,7 @@ void TcpClient::send(const std::string &message)
         });
 }
 
-/**
- * @brief Socketden veri okuma bloğu
- * Bufferdan veri okuma yapılır.
- * async_read_until ile veri gelene kadar bekleme yapar. Geldiği anda veriyi bufferdan okuyarak message içerisine yazdılır.
- * Okunan byte kadar bufferda blok ilerlenir.
- */
+
 void TcpClient::receive() {
     boost::asio::async_read_until(m_socket, m_buffer, '\n', [this](const boost::system::error_code& ec, size_t bytes) {
         if (!ec) {
