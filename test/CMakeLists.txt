@@ -6,10 +6,14 @@ add_executable(ExampleTests ExampleTests.cpp TestFunctions.cpp)
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
 
-set(PATH /home/cagridk/FusionRadar-Project/test/lib)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
-link_directories(${PATH})
+set(PATH ${CMAKE_CURRENT_LIST_DIR}/lib)
 
+if(WIN32)
+
+else()
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+    link_directories(${PATH})
+endif()
 target_link_libraries(ExampleTests PUBLIC ${PATH}/libgtest_main.a ${PATH}/libgtest.a ${PATH}/libgmock.a ${PATH}/libgmock_main.a)
    
 add_test(
