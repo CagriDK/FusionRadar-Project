@@ -2,6 +2,7 @@
 #include <boost/asio.hpp>
 #include <Server.h>
 #include <pthread.h>
+#include "logger.h"
 
 using boost::asio::ip::tcp;
 /**
@@ -36,8 +37,15 @@ void* ServerThread(void* arg)
  * Terminale "exit" yazdırılır ise manuel olarak server durdurulabilir.
  * @return int 
  */
+
 int main(int, char**) 
 {
+  std::string Server2Client_header = "System,SenderId,ReceiverId,MessageId,MessageSize\n"
+                                       ",,,,1,,Baglanti Durumu,Sistem Resetlenme Durumu,//CIT Mesajı\n"
+                                       ",,,,2,,timestamp,id,menzil,latitude,longitude,altitude\n"
+                                       ",,,,3,,Hata Durumu,//Hata Mesajı\n";
+  
+  Logger ServerLogger("Server2Client",Server2Client_header);
   TcpServer server(1234);
   pthread_t thread;
   int result = pthread_create(&thread,nullptr,ServerThread,&server);

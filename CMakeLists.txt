@@ -4,8 +4,21 @@ project(FusionRadarBase VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(FusionRadarBase main.cpp Server.cpp)
-add_executable(FusionRadarClient Client.cpp)
+file(GLOB FusionSources
+    main.cpp
+    Server.cpp
+    include/logger.h
+    source/logger.cpp
+)
+
+file(GLOB FusionRadarClient
+    Client.cpp
+    include/logger.h
+    source/logger.cpp
+)
+
+add_executable(FusionRadarBase ${FusionSources})
+add_executable(FusionRadarClient ${FusionRadarClient})
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include)

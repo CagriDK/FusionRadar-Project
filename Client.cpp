@@ -1,6 +1,7 @@
 #include <Client.h>
 #include <pthread.h>
 #include <unistd.h>
+#include "logger.h"
 
 TcpClient::TcpClient(const std::string &host, unsigned short port)
     : m_socket(m_ioService)
@@ -96,8 +97,15 @@ void* clientThread(void* arg)
  * @return int 
  */
 int main(int, char**){
-    TcpClient client("127.0.0.1",1234);
 
+    std::string Client2Server_header = "System,SenderId,ReceiverId,MessageId,MessageSize\n"
+                                       ",,,,1,,Baglanti Durumu,Sistem Resetlenme Durumu,//CIT Mesajı\n"
+                                       ",,,,2,,timestamp,id,menzil,latitude,longitude,altitude\n"
+                                       ",,,,3,,Hata Durumu,//Hata Mesajı\n";
+
+    Logger ClientLogger("Client2Server",Client2Server_header);
+    TcpClient client("127.0.0.1",1234);
+    
     pthread_t thread;
     int result = pthread_create(&thread,nullptr,clientThread,&client);
 
